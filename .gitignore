@@ -54,3 +54,5 @@ Pipfile.lock
 # Vim
 *~
 .*.sw?
+
+data/
