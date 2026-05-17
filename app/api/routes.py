@@ -7,6 +7,7 @@ from app.db.database import SessionLocal
 from sqlalchemy.orm import Session
 from app.db.models import Job
 from app.db.database import get_db
+# from app.worker.worker import process_job
 router = APIRouter()
 
 UPLOAD_DIR = "data"
@@ -18,7 +19,7 @@ def health_check():
 @router.post("/upload")
 def upload_file(
   file: UploadFile, 
-  background_tasks: BackgroundTasks,
+  # background_tasks: BackgroundTasks,
   db: Session = Depends(get_db)
   ):
   file_path = os.path.join(UPLOAD_DIR, f"{uuid.uuid4()}_{file.filename}")
@@ -36,7 +37,7 @@ def upload_file(
   db.commit()
   db.refresh(job)
   
-  background_tasks.add_task(process_job, job.id)
+  # background_tasks.add_task(process_job, job.id)
   return {
     "job_id": job.id,
     "status": job.status

@@ -7,8 +7,13 @@ import os, json
 while True:
   print("Checking for Jobs...")
   db = SessionLocal()
-  job = None
-  job = db.query(Job).filter(Job.status == "pending").first()
+  job = (
+    db.query(Job)
+    .filter(Job.status == "pending")
+    .order_by(Job.created_at)
+    .with_for_update(skip_locked=True)
+    .first()
+)
   if not job:
       print("No jobs")
       db.close()
@@ -35,6 +40,7 @@ while True:
     job.status = "done"
     db.commit()
     db.refresh(job)
+    print(f"Job done: {job.id}")
     db.close()
     
   except Exception as e:
