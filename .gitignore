@@ -1,0 +1,56 @@
+# Virtual environments
+.venv/
+venv/
+env/
+env3.*
+.codspeed.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Tool caches
+.mypy_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+.cache/
+__pycache__/
+*.py[cod]
+app/__pycache__/
+app/api/__pycache__/
+tests/__pycache__/
+
+# IDEs
+.idea/
+.vscode/
+
+# Coverage / testing
+.coverage*
+coverage.xml
+htmlcov/
+
+# Build / artifacts
+dist/
+site/
+site_build/
+docs_build/
+docs.zip
+archive.zip
+
+# Logs / DB
+log.txt
+*.log
+test.db
+
+# Misc
+Pipfile.lock
+.netlify/
+
+# OS
+.DS_Store
+
+# Vim
+*~
+.*.sw?
